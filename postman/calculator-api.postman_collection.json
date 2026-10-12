@@ -1,0 +1,65 @@
+{
+  "info": {
+    "name": "Calculator API - tests d'intégration",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" }
+  ],
+  "item": [
+    {
+      "name": "Health check",
+      "request": { "method": "GET", "url": "{{baseUrl}}/health" },
+      "event": [{
+        "listen": "test",
+        "script": { "exec": [
+          "pm.test('statut 200', () => pm.response.to.have.status(200));",
+          "pm.test('application UP', () => pm.expect(pm.response.json().status).to.eql('UP'));",
+          "pm.test('temps de réponse < 500 ms', () => pm.expect(pm.response.responseTime).to.be.below(500));"
+        ]}
+      }]
+    },
+    {
+      "name": "Addition",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/add?a=2&b=3" },
+      "event": [{
+        "listen": "test",
+        "script": { "exec": [
+          "pm.test('statut 200', () => pm.response.to.have.status(200));",
+          "pm.test('2 + 3 = 5', () => pm.expect(pm.response.json().result).to.eql(5));"
+        ]}
+      }]
+    },
+    {
+      "name": "Multiplication",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/multiply?a=-4&b=6" },
+      "event": [{
+        "listen": "test",
+        "script": { "exec": [
+          "pm.test('-4 x 6 = -24', () => pm.expect(pm.response.json().result).to.eql(-24));"
+        ]}
+      }]
+    },
+    {
+      "name": "Division par zéro",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/divide?a=1&b=0" },
+      "event": [{
+        "listen": "test",
+        "script": { "exec": [
+          "pm.test('statut 400', () => pm.response.to.have.status(400));",
+          "pm.test('message d\\'erreur', () => pm.expect(pm.response.json()).to.have.property('error'));"
+        ]}
+      }]
+    },
+    {
+      "name": "Opération inconnue",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/modulo?a=1&b=2" },
+      "event": [{
+        "listen": "test",
+        "script": { "exec": [
+          "pm.test('statut 404', () => pm.response.to.have.status(404));"
+        ]}
+      }]
+    }
+  ]
+}

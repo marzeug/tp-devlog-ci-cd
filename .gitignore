@@ -1,0 +1,7 @@
+target/
+artifacts/
+logs/
+__pycache__/
+*.pyc
+.idea/
+.vscode/
