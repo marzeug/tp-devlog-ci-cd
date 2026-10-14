@@ -53,7 +53,7 @@
 	</dependencies>
 
 	<build>
-		<!-- Nom du jar généré : target/employe.jar -->
+		
 		<finalName>employe</finalName>
 		<plugins>
 			<plugin>
@@ -61,7 +61,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
-			<!-- Checkstyle : contrôle la qualité du code (étape lint) -->
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>

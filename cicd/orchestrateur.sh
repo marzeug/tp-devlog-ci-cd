@@ -13,7 +13,7 @@ do
     if [ $? -ne 0 ]; then
         echo "Echec de l'etape $etape"
 
-        # Si c'est le déploiement qui a échoué, on remet l'ancienne version
+        
         if [ "$etape" = "08_deploiement" ]; then
             echo "Etape : 09_rollback"
             bash ../cicd/09_rollback.sh >> ../logs/pipeline.log 2>&1

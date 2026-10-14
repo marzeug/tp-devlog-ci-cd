@@ -1,5 +1,4 @@
 #!/bin/bash
-# Étape 7 : création du jar exécutable (target/employe.jar)
 
 
 
