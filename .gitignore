@@ -1,7 +1,6 @@
 target/
-artifacts/
 logs/
-__pycache__/
-*.pyc
 .idea/
 .vscode/
+# Base de données H2 créée au lancement de l'application / des tests
+*.db
